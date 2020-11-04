@@ -163,6 +163,7 @@ walkers.JSXElement = (node, state, c) => {
 
   for (const child of node.children) {
     switch (child.type) {
+      case 'JSXText':
       case 'Literal': {
         const value = child.value.replace('\n', '').trim()
 
@@ -193,5 +194,6 @@ walkers.JSXExpressionContainer = (node, state, c) => {
 
 walkers.JSXSpreadAttribute = () => {}
 walkers.JSXAttribute = () => {}
+walkers.JSXText = () => {}
 
 module.exports = walkers
