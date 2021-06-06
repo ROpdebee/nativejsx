@@ -1,3 +1,5 @@
+/// <reference path="./jsx.d.ts" />
+
 import type { Options as AcornOptions } from 'acorn'
 
 type ChildType = string | HTMLElement
