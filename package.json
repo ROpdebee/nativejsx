@@ -4,25 +4,24 @@
   "description": "JSX to native DOM API transpilation.",
   "main": "source/nativejsx.js",
   "dependencies": {
-    "acorn": "^5.1.1",
-    "acorn-jsx": "^4.0.1",
-    "commander": "^2.9.0",
-    "escodegen": "^1.7.1",
+    "acorn": "^8.3.0",
+    "acorn-jsx": "^5.3.1",
+    "acorn-walk": "^8.1.0",
+    "commander": "^7.2.0",
+    "escodegen": "^2.0.0",
     "glob": "^7.0.3",
-    "merge": "^1.2.0"
+    "merge": "^2.1.1"
   },
   "devDependencies": {
-    "chai": "^3.4.1",
-    "mocha": "^2.3.4",
-    "sinon": "^1.17.2",
-    "standard": "^9.0.0",
-    "webpack": "^2.2.1"
+    "chai": "^4.3.4",
+    "mocha": "^8.4.0",
+    "sinon": "^11.1.1",
+    "standard": "^16.0.3",
+    "webpack": "^5.38.1"
   },
-  "engines": [
-    {
-      "node": "6.10.0"
-    }
-  ],
+  "engines": {
+    "node": ">= 16"
+  },
   "scripts": {
     "test": "standard && ./node_modules/.bin/mocha --harmony",
     "build": "standard && node ./scripts/generate-asts.js && ./node_modules/.bin/webpack"

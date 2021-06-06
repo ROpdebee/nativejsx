@@ -39,8 +39,8 @@ transformers.JSXAttribute = (node, state) => {
     transform = compositions.setAttribute(state.name, name, value)
   }
 
-  for (let key in node) delete node[key]
-  for (let key in transform) node[key] = transform[key]
+  for (const key in node) delete node[key]
+  for (const key in transform) node[key] = transform[key]
 }
 
 transformers.JSXSpreadAttribute = (node, state) => {
@@ -64,8 +64,8 @@ transformers.JSXSpreadAttribute = (node, state) => {
     )
   }
 
-  for (let key in node) delete node[key]
-  for (let key in transform) node[key] = transform[key]
+  for (const key in node) delete node[key]
+  for (const key in transform) node[key] = transform[key]
 }
 
 transformers.JSXElement = (node, state) => {
@@ -79,7 +79,7 @@ transformers.JSXElement = (node, state) => {
     )
   } else {
     (function flatten (node) {
-      for (let child of node.children) {
+      for (const child of node.children) {
         if (child.transform) body = body.concat(child.transform)
         if (child.children) flatten(child)
       }
@@ -91,7 +91,7 @@ transformers.JSXElement = (node, state) => {
       )
     )
 
-    for (let key in body) node[key] = body[key]
+    for (const key in body) node[key] = body[key]
   }
 }
 

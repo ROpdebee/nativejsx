@@ -24,7 +24,7 @@ walkers.CallExpression = (node, state, c) => {
   c(node.callee, state, 'Expression')
 
   if (node.arguments) {
-    for (let argument of node.arguments) {
+    for (const argument of node.arguments) {
       if (argument.type === 'JSXElement') {
         state.transformed = true
 
@@ -40,7 +40,7 @@ walkers.CallExpression = (node, state, c) => {
 }
 
 walkers.ConditionalExpression = (node, state, c) => {
-  for (let branch of [node.consequent, node.alternate]) {
+  for (const branch of [node.consequent, node.alternate]) {
     if (branch.type === 'JSXElement') {
       state.transformed = true
 
@@ -55,7 +55,7 @@ walkers.ConditionalExpression = (node, state, c) => {
 }
 
 walkers.LogicalExpression = (node, state, c) => {
-  for (let branch of [node.left, node.right]) {
+  for (const branch of [node.left, node.right]) {
     if (branch.type === 'JSXElement') {
       state.transformed = true
 
@@ -157,13 +157,13 @@ walkers.Property = (node, state, c) => {
 }
 
 walkers.JSXElement = (node, state, c) => {
-  for (let attribute of node.openingElement.attributes) {
+  for (const attribute of node.openingElement.attributes) {
     c(attribute, state)
   }
 
-  for (let child of node.children) {
+  for (const child of node.children) {
     switch (child.type) {
-      case 'Literal':
+      case 'Literal': {
         const value = child.value.replace('\n', '').trim()
 
         if (value.length) {
@@ -173,6 +173,7 @@ walkers.JSXElement = (node, state, c) => {
           })
         }
         break
+      }
       case 'JSXExpressionContainer':
       case 'JSXElement':
         c(child, {

@@ -159,18 +159,18 @@ describe('generators', () => {
 
         assert.property(element, 'children')
         assert.property(element, 'openingElement')
-        assert.deepProperty(element, 'openingElement.attributes')
+        assert.nestedProperty(element, 'openingElement.attributes')
         assert.notProperty(element, 'closingElement')
 
-        assert.deepPropertyVal(element, 'openingElement.name.name', 'hello')
-        assert.deepPropertyVal(element, 'openingElement.selfClosing', true)
+        assert.deepNestedPropertyVal(element, 'openingElement.name.name', 'hello')
+        assert.deepNestedPropertyVal(element, 'openingElement.selfClosing', true)
       })
 
       it('with attributes and no children', () => {
         const element = generators.jsxelement('hello', ['test'])
 
         assert.property(element, 'openingElement')
-        assert.deepProperty(element, 'openingElement.attributes')
+        assert.nestedProperty(element, 'openingElement.attributes')
         assert.lengthOf(element.openingElement.attributes, 1)
         assert.deepEqual(element.openingElement.attributes, ['test'])
       })
@@ -188,7 +188,7 @@ describe('generators', () => {
         const element = generators.jsxelement('hello', ['attribute'], ['child'])
 
         assert.property(element, 'openingElement')
-        assert.deepProperty(element, 'openingElement.attributes')
+        assert.nestedProperty(element, 'openingElement.attributes')
         assert.lengthOf(element.openingElement.attributes, 1)
         assert.deepEqual(element.openingElement.attributes, ['attribute'])
 

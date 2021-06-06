@@ -5,7 +5,7 @@ const compositions = {}
  * Document API compositions
  */
 
-const attributes = { 'className': 'class' }
+const attributes = { className: 'class' }
 const properties = ['required', 'disabled']
 
 compositions.createElement = (variable, tag) => {
@@ -31,8 +31,8 @@ compositions.createTextNode = (variable, expression) => {
 }
 
 compositions.setAttribute = (variable, attribute, assignmentExpression) => {
-  let isProperty = properties.indexOf(attribute) !== -1
-  let mappedAttribute = attributes[attribute] || attribute
+  const isProperty = properties.indexOf(attribute) !== -1
+  const mappedAttribute = attributes[attribute] || attribute
 
   if (isProperty) {
     return generators.assigns(

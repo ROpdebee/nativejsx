@@ -11,7 +11,7 @@ nativejsx.parse('./test/jsx/test.jsx')
   })
 
 // OR Synchronous, for callback and promise naysayers :).
-const bySync = nativejsx.parseSync('./test/jsx/node-expressions.jsx', {prototypes: 'inline'})
+const bySync = nativejsx.parseSync('./test/jsx/node-expressions.jsx', { prototypes: 'inline' })
 // ==>
 console.log(bySync)
 

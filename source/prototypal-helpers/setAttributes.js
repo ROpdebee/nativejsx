@@ -1,11 +1,11 @@
 module.exports = function setAttributes (element, attributes) {
-  var isPlainObject = Object.prototype.toString.call(attributes) === '[object Object]' &&
+  const isPlainObject = Object.prototype.toString.call(attributes) === '[object Object]' &&
     typeof attributes.constructor === 'function' &&
     Object.prototype.toString.call(attributes.constructor.prototype) === '[object Object]' &&
-    attributes.constructor.prototype.hasOwnProperty('isPrototypeOf')
+    Object.prototype.hasOwnProperty.call(attributes.constructor.prototype, 'isPrototypeOf')
 
   if (isPlainObject) {
-    for (var key in attributes) {
+    for (const key in attributes) {
       element.setAttribute(key, attributes[key])
     }
   } else {

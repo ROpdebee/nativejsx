@@ -8,8 +8,8 @@ describe('transformers', () => {
     let state
 
     beforeEach(() => {
-      node = {name: {name: 'name'}, value: generators.literal('value')}
-      state = {name: 'name'}
+      node = { name: { name: 'name' }, value: generators.literal('value') }
+      state = { name: 'name' }
     })
 
     describe('when attribute is "style"', () => {
@@ -21,13 +21,13 @@ describe('transformers', () => {
         node.value = { type: 'ObjectExpression', properties: [] }
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.object.name',
           state.name
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.property.name',
           'setStyles'
@@ -44,19 +44,19 @@ describe('transformers', () => {
         node.value = generators.functionExpression(null, [], {})
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.type',
           'CallExpression'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.type',
           'FunctionExpression'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.arguments[0].name',
           state.name
@@ -66,19 +66,19 @@ describe('transformers', () => {
       it('transforms into a `setAttribute` call', () => {
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.object.name',
           state.name
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.property.name',
           'setAttribute'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.arguments[1].value',
           'value'
@@ -94,25 +94,25 @@ describe('transformers', () => {
       it('transforms into an `addEventListener`, removing "on"', () => {
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.object.name',
           state.name
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.property.name',
           'addEventListener'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.arguments[0].value',
           'click'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.arguments[1].value',
           'value'
@@ -124,19 +124,19 @@ describe('transformers', () => {
       it('transforms into a `setAttribute`', () => {
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.object.name',
           state.name
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.callee.property.name',
           'setAttribute'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.arguments[1].value',
           'value'
@@ -151,7 +151,7 @@ describe('transformers', () => {
         it('preserves the attribute name', () => {
           transformers.JSXAttribute(node, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             node,
             'expression.arguments[0].value',
             'id'
@@ -167,7 +167,7 @@ describe('transformers', () => {
         it('maps the attribute name', () => {
           transformers.JSXAttribute(node, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             node,
             'expression.arguments[0].value',
             'class'
@@ -184,25 +184,25 @@ describe('transformers', () => {
       it('transforms into a property assignment', () => {
         transformers.JSXAttribute(node, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.operator',
           '='
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.left.object.name',
           state.name
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.left.property.name',
           'required'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           node,
           'expression.right.value',
           'value'
@@ -247,7 +247,7 @@ describe('transformers', () => {
         it('contains a VariableDeclaration at index 0', () => {
           transformers.JSXElement(element, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].type',
             'VariableDeclaration'
@@ -257,7 +257,7 @@ describe('transformers', () => {
         it('contains an ExpressionStatement at index 1', () => {
           transformers.JSXElement(element, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].type',
             'ExpressionStatement'
@@ -268,26 +268,26 @@ describe('transformers', () => {
 
     describe('as a root element', () => {
       beforeEach(() => {
-        state = {parent: null, name: 'name'}
+        state = { parent: null, name: 'name' }
         element.children = []
       })
 
       it('creates a closure', () => {
         transformers.JSXElement(element, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'callee.type',
           'MemberExpression'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'callee.object.type',
           'FunctionExpression'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'callee.object.body.body[1].type',
           'ReturnStatement'
@@ -297,15 +297,15 @@ describe('transformers', () => {
       describe('with children', () => {
         beforeEach(() => {
           element.children = [
-            {transform: 'transform1'},
-            {transform: 'transform2', children: [{transform: 'transform3'}]}
+            { transform: 'transform1' },
+            { transform: 'transform2', children: [{ transform: 'transform3' }] }
           ]
         })
 
         it('adds children transforms to the body', () => {
           transformers.JSXElement(element, state)
 
-          assert.deepProperty(element, 'callee.object.body.body')
+          assert.nestedProperty(element, 'callee.object.body.body')
           assert.lengthOf(element.callee.object.body.body, 5)
           assert.include(
             element.callee.object.body.body,
@@ -324,32 +324,32 @@ describe('transformers', () => {
       let state
 
       beforeEach(() => {
-        element = {expression: 'hello'}
-        state = {parent: 'parent'}
+        element = { expression: 'hello' }
+        state = { parent: 'parent' }
       })
 
       it('builds an `appendChildren` AST', () => {
         transformers.JSXExpressionContainer(element, state)
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'transform.type',
           'ExpressionStatement'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'transform.expression.callee.object.name',
           state.parent
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'transform.expression.callee.property.name',
           'appendChildren'
         )
 
-        assert.deepPropertyVal(
+        assert.deepNestedPropertyVal(
           element,
           'transform.expression.arguments[0]',
           element.expression
@@ -364,8 +364,8 @@ describe('transformers', () => {
       let state
 
       beforeEach(() => {
-        element = {value: 'hello'}
-        state = {parent: 'parent', name: 'name'}
+        element = { value: 'hello' }
+        state = { parent: 'parent', name: 'name' }
       })
 
       it('builds a transform property', () => {
@@ -380,31 +380,31 @@ describe('transformers', () => {
         it('builds a `createTextNode` AST', () => {
           transformers.Literal(element, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].type',
             'VariableDeclaration'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].declarations[0].id.name',
             state.name
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].declarations[0].init.callee.object.name',
             'document'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].declarations[0].init.callee.property.name',
             'createTextNode'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[0].declarations[0].init.arguments[0].value',
             element.value
@@ -414,31 +414,31 @@ describe('transformers', () => {
         it('builds an `appendChild` AST', () => {
           transformers.Literal(element, state)
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].type',
             'ExpressionStatement'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].expression.type',
             'CallExpression'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].expression.callee.object.name',
             state.parent
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].expression.callee.property.name',
             'appendChild'
           )
 
-          assert.deepPropertyVal(
+          assert.deepNestedPropertyVal(
             element,
             'transform[1].expression.arguments[0].name',
             state.name

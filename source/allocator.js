@@ -11,8 +11,8 @@ allocator.next = () => {
   let repetition = Math.ceil(variableIndex / ALPHABET_LENGTH)
   repetition += variableIndex % ALPHABET_LENGTH === 0 ? 1 : 0
 
-  let letter = ALPHABET[variableIndex % ALPHABET_LENGTH]
-  let letteredComponent = Array(repetition).fill(letter).join('')
+  const letter = ALPHABET[variableIndex % ALPHABET_LENGTH]
+  const letteredComponent = Array(repetition).fill(letter).join('')
 
   variableIndex += 1
 
