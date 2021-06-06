@@ -1,120 +1,124 @@
 {
   "type": "FunctionDeclaration",
   "start": 0,
-  "end": 106,
+  "end": 109,
   "id": {
     "type": "Identifier",
     "start": 9,
     "end": 20,
     "name": "__setStyles"
   },
-  "generator": false,
   "expression": false,
+  "generator": false,
+  "async": false,
   "params": [
     {
       "type": "Identifier",
-      "start": 21,
-      "end": 28,
+      "start": 22,
+      "end": 29,
       "name": "element"
     },
     {
       "type": "Identifier",
-      "start": 30,
-      "end": 36,
+      "start": 31,
+      "end": 37,
       "name": "styles"
     }
   ],
   "body": {
     "type": "BlockStatement",
-    "start": 38,
-    "end": 106,
+    "start": 39,
+    "end": 109,
     "body": [
       {
         "type": "ForInStatement",
-        "start": 42,
-        "end": 104,
+        "start": 43,
+        "end": 107,
         "left": {
           "type": "VariableDeclaration",
-          "start": 47,
-          "end": 56,
+          "start": 48,
+          "end": 59,
           "declarations": [
             {
               "type": "VariableDeclarator",
-              "start": 51,
-              "end": 56,
+              "start": 54,
+              "end": 59,
               "id": {
                 "type": "Identifier",
-                "start": 51,
-                "end": 56,
+                "start": 54,
+                "end": 59,
                 "name": "style"
               },
               "init": null
             }
           ],
-          "kind": "var"
+          "kind": "const"
         },
         "right": {
           "type": "Identifier",
-          "start": 60,
-          "end": 66,
+          "start": 63,
+          "end": 69,
           "name": "styles"
         },
         "body": {
           "type": "ExpressionStatement",
-          "start": 68,
-          "end": 104,
+          "start": 71,
+          "end": 107,
           "expression": {
             "type": "AssignmentExpression",
-            "start": 68,
-            "end": 104,
+            "start": 71,
+            "end": 107,
             "operator": "=",
             "left": {
               "type": "MemberExpression",
-              "start": 68,
-              "end": 88,
+              "start": 71,
+              "end": 91,
               "object": {
                 "type": "MemberExpression",
-                "start": 68,
-                "end": 81,
+                "start": 71,
+                "end": 84,
                 "object": {
                   "type": "Identifier",
-                  "start": 68,
-                  "end": 75,
+                  "start": 71,
+                  "end": 78,
                   "name": "element"
                 },
                 "property": {
                   "type": "Identifier",
-                  "start": 76,
-                  "end": 81,
+                  "start": 79,
+                  "end": 84,
                   "name": "style"
                 },
-                "computed": false
+                "computed": false,
+                "optional": false
               },
               "property": {
                 "type": "Identifier",
-                "start": 82,
-                "end": 87,
+                "start": 85,
+                "end": 90,
                 "name": "style"
               },
-              "computed": true
+              "computed": true,
+              "optional": false
             },
             "right": {
               "type": "MemberExpression",
-              "start": 91,
-              "end": 104,
+              "start": 94,
+              "end": 107,
               "object": {
                 "type": "Identifier",
-                "start": 91,
-                "end": 97,
+                "start": 94,
+                "end": 100,
                 "name": "styles"
               },
               "property": {
                 "type": "Identifier",
-                "start": 98,
-                "end": 103,
+                "start": 101,
+                "end": 106,
                 "name": "style"
               },
-              "computed": true
+              "computed": true,
+              "optional": false
             }
           }
         }

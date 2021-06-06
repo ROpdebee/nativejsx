@@ -1,4 +1,4 @@
-const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin')
 const path = require('path')
 
 module.exports = {
@@ -10,10 +10,12 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'
   },
+  optimization: {
+    minimize: false
+  },
   plugins: [
-    new webpack.optimize.UglifyJsPlugin({
-      include: /min\.js$/,
-      minify: true
+    new TerserPlugin({
+      include: /min\.js$/
     })
   ]
 }
