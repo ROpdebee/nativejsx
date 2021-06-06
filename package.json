@@ -62,5 +62,6 @@
       "beforeEach",
       "it"
     ]
-  }
+  },
+  "types": "types/nativejsx.d.ts"
 }
