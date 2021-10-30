@@ -5,7 +5,7 @@ const compositions = {}
  * Document API compositions
  */
 
-const attributes = { className: 'class' }
+const attributes = { className: 'class', htmlFor: 'for' }
 const properties = ['required', 'disabled']
 
 compositions.createElement = (variable, tag) => {
