@@ -74,7 +74,7 @@ declare namespace NativeJSX {
     type TransitionEventHandler<T = Element> = BaseEventHandler<TransitionEvent<T>>;
 
     interface DOMAttributes<T> {
-        children?: HTMLElement | HTMLElement[] | string;
+        children?: HTMLElement | string | Array<HTMLElement | string>;
         dangerouslySetInnerHTML?: {
             __html: string;
         };
