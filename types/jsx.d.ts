@@ -1,6 +1,8 @@
 // Adapted from @types/react/index.d.ts to produce native DOM objects instead
 // of React.DOM objects.
 
+/// <reference lib="dom" />
+
 import * as CSS from 'csstype';
 
 export {}
