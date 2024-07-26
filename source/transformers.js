@@ -116,8 +116,9 @@ transformers.JSXExpressionContainer = (node, state) => {
 
 transformers.Literal = transformers.JSXText = (node, state) => {
   if (state && state.parent && state.name) {
+    const value = typeof node.value === 'string' ? node.value.trim() : node.value;
     node.transform = [
-      compositions.createTextNode(state.name, generators.literal(node.value)),
+      compositions.createTextNode(state.name, generators.literal(value)),
       compositions.appendChild(state.parent, state.name)
     ]
   }
